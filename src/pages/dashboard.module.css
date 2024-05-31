@@ -1,53 +1,121 @@
-/* src/pages/dashboard.module.css */
 .container {
-    padding: 20px;
-    background-color: #f0f8ff;
+  padding: 20px;
+  background-color: #f0f8ff;
+}
+
+.inputSection, .historySection {
+  margin-bottom: 20px;
+}
+
+.inputTable, .resultTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.inputTable th, .inputTable td, .resultTable th, .resultTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.inputTable th, .resultTable th {
+  background-color: #2c5f2d;
+  color: white;
+}
+
+.calculatedValue {
+  color: red;
+  margin-left: 10px;
+}
+
+.resetButton, .saveButton {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.resetButton:hover, .saveButton:hover {
+  background-color: #ff4500;
+}
+
+.historySection {
+  margin-top: 20px;
+}
+
+.historyItem {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.historyContent {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.resultSection {
+  margin-top: 20px;
+}
+
+.resultContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.resultTable tbody tr {
+  border: 1px solid #ddd;
+}
+
+@media (max-width: 680px) {
+  .resultContent {
+    flex-direction: column;
   }
-  
-  .inputSection, .historySection {
-    margin-bottom: 20px;
-  }
-  
-  .inputGroup {
-    margin-bottom: 15px;
-  }
-  
-  .inputLabel {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #2c5f2d;
-  }
-  
-  .historySection {
-    margin-top: 20px;
-  }
-  
-  .historyItem {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
-  }
-  
-  .historyContent {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
+
   .inputValues, .outputValues {
-    width: 48%;
+    width: 100%;
   }
-  
-  @media (max-width: 680px) {
-    .historyContent {
-      flex-direction: column;
-    }
-  
-    .inputValues, .outputValues {
-      width: 100%;
-    }
+}
+
+.button {
+  padding: 10px;
+  width: 48%;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.saveButton {
+  background-color: #2c5f2d;
+}
+
+.saveButton:hover {
+  background-color: #1b3f1b;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 680px) {
+  .actionButtons {
+    flex-direction: column;
   }
-  
+
+  .button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
