@@ -46,9 +46,11 @@ export default function Home() {
         </div>
         <button type="submit">로그인</button>
       </form>
+      <div className=''>
       <p>
         계정이 없으신가요? <a href="/signup">회원가입</a>
       </p>
+      </div>
     </div>
   );
 }
