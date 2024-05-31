@@ -1,0 +1,37 @@
+/* src/pages/history.module.css */
+.container {
+  padding: 20px;
+  background-color: #f0f8ff;
+}
+
+.historySection {
+  margin-top: 20px;
+}
+
+.historyItem {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.historyContent {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.inputValues, .outputValues {
+  width: 48%;
+}
+
+@media (max-width: 680px) {
+  .historyContent {
+    flex-direction: column;
+  }
+
+  .inputValues, .outputValues {
+    width: 100%;
+  }
+}
