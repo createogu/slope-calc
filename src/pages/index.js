@@ -1,26 +1,14 @@
-// src/pages/index.js
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../app/firebase';
 import { useRouter } from 'next/navigation';
-import styles from './index.module.css';
 
 export default function Home() {
-  const [user, loading] = useAuthState(auth);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!loading) {
-      if (user) {
-        router.push('/dashboard');
-      }
-    }
-  }, [user, loading, router]);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -32,15 +20,11 @@ export default function Home() {
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div className={styles.container}>
+    <div className="container">
       <h1>로그인</h1>
       <form onSubmit={handleLogin}>
-        <div className={styles.inputGroup}>
+        <div className="input-group">
           <label htmlFor="email">이메일:</label>
           <input
             type="email"
@@ -50,7 +34,7 @@ export default function Home() {
             required
           />
         </div>
-        <div className={styles.inputGroup}>
+        <div className="input-group">
           <label htmlFor="password">비밀번호:</label>
           <input
             type="password"
@@ -60,7 +44,7 @@ export default function Home() {
             required
           />
         </div>
-        <button type="submit" className={styles.button}>로그인</button>
+        <button type="submit">로그인</button>
       </form>
       <p>
         계정이 없으신가요? <a href="/signup">회원가입</a>
