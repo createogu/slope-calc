@@ -24,6 +24,22 @@
   color: white;
 }
 
+.resultTable th[colspan="3"], .resultTable th[colspan="2"] {
+  text-align: center;
+}
+
+.resultTable th, .resultTable td {
+  text-align: left;
+}
+
+.resultTable td {
+  width: 20%; /* 동일한 비중으로 배치 */
+}
+
+.resultTable .rightAlign {
+  text-align: right;
+}
+
 .calculatedValue {
   color: red;
   margin-left: 10px;
