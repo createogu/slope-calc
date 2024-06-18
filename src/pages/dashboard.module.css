@@ -28,10 +28,12 @@
   text-align: center;
 }
 
-.resultTable th, .resultTable td {
+.resultTable th{
+  text-align: center;
+}
+.resultTable td {
   text-align: left;
 }
-
 .resultTable td {
   width: 20%; /* 동일한 비중으로 배치 */
 }
@@ -123,6 +125,27 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+.accordionSection {
+  margin-bottom: 20px;
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2c5f2d;
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: pointer;
+  border: 1px solid #2c5f2d;
+  color: white;
+}
+
+.accordionContent {
+  
+  border: 1px solid #2c5f2d;
+  border-top: none;
 }
 
 @media (max-width: 680px) {

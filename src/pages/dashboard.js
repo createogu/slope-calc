@@ -5,6 +5,7 @@ import { auth, db } from '../../firebase';
 import { useRouter } from 'next/router';
 import { FaRedoAlt, FaSave, FaTrashAlt } from 'react-icons/fa'; // 아이콘 사용을 위한 import
 import styles from './dashboard.module.css';
+import Image from 'next/image';
 
 export default function Dashboard() {
   const [user, loading] = useAuthState(auth);
@@ -18,6 +19,11 @@ export default function Dashboard() {
   const [result, setResult] = useState({});
   const [basicData, setBasicData] = useState({});
   const router = useRouter();
+  const [accordionOpen, setAccordionOpen] = useState(true);
+
+  const toggleAccordion = () => {
+    setAccordionOpen(!accordionOpen);
+  };
 
   const calculateValues = () => {
     const V_아래_calculated = V_아래 ? Math.abs((V_아래 <= 180 ? 90 - V_아래 : 270 - V_아래)) : '';
@@ -98,7 +104,26 @@ export default function Dashboard() {
 
   return (
     <div className={styles.container}>
-      <h1>계산기</h1>
+      <h1>기울기 계산기</h1>
+      <div className={styles.accordionSection}>
+        <div className={styles.accordionHeader} onClick={toggleAccordion}>
+          <h3>참고 이미지</h3>
+          <span>{accordionOpen ? '▼' : '▲'}</span>
+        </div>
+        {accordionOpen && (
+          <div className={styles.accordionContent}>
+<Image 
+  src="/image/refImage.png" 
+  alt="참고 이미지" 
+  layout="responsive"
+  width={800} 
+  height={600} 
+  style={{ width: '100%', maxWidth:500, height: 'auto' }}
+/>
+
+          </div>
+        )}
+      </div>
       <div className={styles.inputSection}>
         <table className={styles.inputTable}>
           <thead>
@@ -244,36 +269,37 @@ export default function Dashboard() {
             </thead>
             <tbody>
               <tr>
-                <td>A</td>
-                <td>{Math.abs(basicData.A).toFixed(6)}</td>
+                <td className='itemName'>A</td>
+                <td>{Math.abs(basicData.A).toFixed(4)}</td>
                 <td>{Math.abs(basicData.A_rad).toFixed(6)}</td>
                 <td>L</td>
-                <td>{Math.abs(result.L).toFixed(6)}</td>
+                <td>{Math.abs(result.L).toFixed(4)}</td>
               </tr>
               <tr>
                 <td>B</td>
-                <td>{Math.abs(basicData.B).toFixed(6)}</td>
+                <td>{Math.abs(basicData.B).toFixed(4)}</td>
                 <td>{Math.abs(basicData.B_rad).toFixed(6)}</td>
                 <td>H1</td>
-                <td>{Math.abs(result.H1).toFixed(6)}</td>
+                <td>{Math.abs(result.H1).toFixed(4)}</td>
               </tr>
               <tr>
                 <td>C</td>
-                <td>{Math.abs(basicData.C).toFixed(6)}</td>
+                <td>{Math.abs(basicData.C).toFixed(4)}</td>
                 <td>{Math.abs(basicData.C_rad).toFixed(6)}</td>
                 <td>E</td>
-                <td>{Math.abs(result.E).toFixed(6)}</td>
+                <td>{Math.abs(result.E).toFixed(4)}</td>
               </tr>
               <tr>
                 <td>D</td>
-                <td>{Math.abs(basicData.D).toFixed(6)}</td>
+                <td>{Math.abs(basicData.D).toFixed(4)}</td>
                 <td>{Math.abs(basicData.D_rad).toFixed(6)}</td>
                 <td>δ</td>
                 <td>{Math.abs(result.delta).toFixed(6)}</td>
               </tr>
               <tr>
-                <td colSpan="4" className={styles.rightAlign}>기울기</td>
+                <td colSpan="3" className={styles.rightAlign}>기울기</td>
                 <td>{Math.abs(result.slope).toFixed(6)}</td>
+                <td>{Math.abs(result.slope * 100).toFixed(4)}%</td>
               </tr>
             </tbody>
           </table>
