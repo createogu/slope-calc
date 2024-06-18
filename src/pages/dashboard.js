@@ -20,31 +20,31 @@ export default function Dashboard() {
   const router = useRouter();
 
   const calculateValues = () => {
-    const V_아래_calculated = V_아래 ? Math.abs((V_아래 <= 180 ? 90 - V_아래 : 270 - V_아래).toFixed(4)) : '';
-    const V_위_calculated = V_위 ? Math.abs((V_위 <= 180 ? 90 - V_위 : 270 - V_위).toFixed(4)) : '';
+    const V_아래_calculated = V_아래 ? Math.abs((V_아래 <= 180 ? 90 - V_아래 : 270 - V_아래)) : '';
+    const V_위_calculated = V_위 ? Math.abs((V_위 <= 180 ? 90 - V_위 : 270 - V_위)) : '';
     
     if (V_아래 && V_위 && (H || L)) {
-      const A = (V_위_calculated - V_아래_calculated).toFixed(4);
-      const B = V_아래_calculated;
-      const C = V_위_calculated;
-      const D = (H_위 - H_아래).toFixed(4);
+      const A = Math.abs(V_위_calculated - V_아래_calculated);
+      const B = V_위_calculated;
+      const C = V_아래_calculated;
+      const D = (H_위 - H_아래);
 
-      const A_rad = (A * Math.PI / 180).toFixed(4);
-      const B_rad = (B * Math.PI / 180).toFixed(4);
-      const C_rad = (C * Math.PI / 180).toFixed(4);
-      const D_rad = (D * Math.PI / 180).toFixed(4);
+      const A_rad = (A * Math.PI / 180);
+      const B_rad = (B * Math.PI / 180);
+      const C_rad = (C * Math.PI / 180);
+      const D_rad = (D * Math.PI / 180);
 
       setBasicData({ A, B, C, D, A_rad, B_rad, C_rad, D_rad });
 
       let calculatedL = L;
       if (!L) {
-        calculatedL = (H / (Math.tan(C_rad) - Math.tan(B_rad))).toFixed(4);
+        calculatedL = (H / (Math.tan(C_rad) - Math.tan(B_rad)));
       }
       
-      const H1 = (calculatedL * Math.tan(C_rad)).toFixed(4);
-      const E = (Math.sqrt(calculatedL ** 2 + H1 ** 2)).toFixed(4);
-      const delta = (E * Math.tan(D_rad)).toFixed(4);
-      const slope = (delta / H1).toFixed(4);
+      const H1 = (calculatedL * Math.tan(C_rad));
+      const E = (Math.sqrt(calculatedL ** 2 + H1 ** 2));
+      const delta = (E * Math.tan(D_rad));
+      const slope = (delta / H1);
 
       setResult({ L: calculatedL, H1, E, delta, slope });
     }
@@ -245,35 +245,35 @@ export default function Dashboard() {
             <tbody>
               <tr>
                 <td>A</td>
-                <td>{basicData.A}</td>
-                <td>{basicData.A_rad}</td>
+                <td>{Math.abs(basicData.A).toFixed(6)}</td>
+                <td>{Math.abs(basicData.A_rad).toFixed(6)}</td>
                 <td>L</td>
-                <td>{result.L}</td>
+                <td>{Math.abs(result.L).toFixed(6)}</td>
               </tr>
               <tr>
                 <td>B</td>
-                <td>{basicData.B}</td>
-                <td>{basicData.B_rad}</td>
+                <td>{Math.abs(basicData.B).toFixed(6)}</td>
+                <td>{Math.abs(basicData.B_rad).toFixed(6)}</td>
                 <td>H1</td>
-                <td>{result.H1}</td>
+                <td>{Math.abs(result.H1).toFixed(6)}</td>
               </tr>
               <tr>
                 <td>C</td>
-                <td>{basicData.C}</td>
-                <td>{basicData.C_rad}</td>
+                <td>{Math.abs(basicData.C).toFixed(6)}</td>
+                <td>{Math.abs(basicData.C_rad).toFixed(6)}</td>
                 <td>E</td>
-                <td>{result.E}</td>
+                <td>{Math.abs(result.E).toFixed(6)}</td>
               </tr>
               <tr>
                 <td>D</td>
-                <td>{basicData.D}</td>
-                <td>{basicData.D_rad}</td>
+                <td>{Math.abs(basicData.D).toFixed(6)}</td>
+                <td>{Math.abs(basicData.D_rad).toFixed(6)}</td>
                 <td>δ</td>
-                <td>{result.delta}</td>
+                <td>{Math.abs(result.delta).toFixed(6)}</td>
               </tr>
               <tr>
                 <td colSpan="4" className={styles.rightAlign}>기울기</td>
-                <td>{result.slope}</td>
+                <td>{Math.abs(result.slope).toFixed(6)}</td>
               </tr>
             </tbody>
           </table>
