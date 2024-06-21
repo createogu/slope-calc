@@ -31,8 +31,8 @@ export default function Dashboard() {
     
     if (V_아래 && V_위 && (H || L)) {
       const A = Math.abs(V_위_calculated - V_아래_calculated);
-      const B = V_위_calculated;
-      const C = V_아래_calculated;
+      const B = V_아래_calculated;
+      const C = V_위_calculated;
       const D = (H_위 - H_아래);
 
       const A_rad = (A * Math.PI / 180);
